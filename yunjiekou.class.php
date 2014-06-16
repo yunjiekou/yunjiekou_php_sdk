@@ -3,8 +3,8 @@ if(!defined("YJK_API_HOST"))
 {
 	define("YJK_API_HOST", "http://api.yunjiekou.com/");
 	define("YJK_API_VERSION", "1.0");
-	define("YJK_APP_KEY", "1ebacf4cce2c1bd36d9cbbceb1e369f1");
-	define("YJK_APP_SECRET", "c31d41b52126d94b8d3fb366d84ad645");
+	define("YJK_APP_KEY", "YOUR APP KEY");
+	define("YJK_APP_SECRET", "YOUR APP SECRET");
 }
 
 class YunJieKou
