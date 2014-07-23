@@ -3,8 +3,8 @@ if(!defined("YJK_API_HOST"))
 {
 	define("YJK_API_HOST", "http://api.yunjiekou.com/");
 	define("YJK_API_VERSION", "1.0");
-	define("YJK_APP_KEY", "YOUR APP KEY");
-	define("YJK_APP_SECRET", "YOUR APP SECRET");
+	define("YJK_APP_KEY", "Your App Key");
+	define("YJK_APP_SECRET", "Your App Secret");
 }
 
 class YunJieKou
@@ -22,7 +22,7 @@ class YunJieKou
 		$sign = $this->sign($p);
 		
 		$url = YJK_API_HOST."?".http_build_query($p)."&sign=".$sign;
-		return $url;
+		$data = json_decode( $this->getData($url));
 	}
 	
 	private function sign($p)
@@ -36,10 +36,22 @@ class YunJieKou
 		return md5(YJK_APP_SECRET.$s.YJK_APP_SECRET);
 	}
 	
-	private function getData($url,$params)
+	private function getData($url,$params = null)
 	{
-	
+	 	$ch = curl_init();
+	 	curl_setopt($ch, CURLOPT_URL, $url);
+	 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	 	if($params)
+	 	{
+	 		curl_setopt($ch, CURLOPT_POST, 1);
+	 		curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+	 	}
+	 	$output = curl_exec($ch);
+	 	curl_close($ch);
+	 	return $output;
 	}
+	
+	
 } 
 
 ?>
