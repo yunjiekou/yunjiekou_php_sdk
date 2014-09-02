@@ -23,6 +23,8 @@ class YunJieKou
 		
 		$url = YJK_API_HOST."?".http_build_query($p)."&sign=".$sign;
 		$data = json_decode( $this->getData($url));
+		
+		return $data;
 	}
 	
 	private function sign($p)
