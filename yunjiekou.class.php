@@ -16,10 +16,10 @@ class YunJieKou
 		$p["appkey"] = YJK_APP_KEY;
 		$p["v"] = YJK_API_VERSION;
 		$p["timestamp"] = time();
-		$p["method"] = $api_name;
+		//$p["method"] = $api_name;
 		$p["format"] = $format;
 		
-		$sign = $this->sign($p);
+		$sign = $this->sign($p,$api_name);
 		
 		$url = YJK_API_HOST."?".http_build_query($p)."&sign=".$sign;
 		$data = json_decode( $this->getData($url));
@@ -35,7 +35,7 @@ class YunJieKou
 		{
 			$s.=($k.$v);
 		}
-		return md5(YJK_APP_SECRET.$s.YJK_APP_SECRET);
+		return md5(YJK_APP_SECRET.$s.$api_name.YJK_APP_SECRET);
 	}
 	
 	private function getData($url,$params = null)
