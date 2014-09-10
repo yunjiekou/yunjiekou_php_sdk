@@ -27,7 +27,7 @@ class YunJieKou
 		return $data;
 	}
 	
-	private function sign($p)
+	private function sign($p,$api_name)
 	{
 		$s = '';
 		ksort($p);
