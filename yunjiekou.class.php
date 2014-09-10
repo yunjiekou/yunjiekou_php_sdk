@@ -16,12 +16,11 @@ class YunJieKou
 		$p["appkey"] = YJK_APP_KEY;
 		$p["v"] = YJK_API_VERSION;
 		$p["timestamp"] = time();
-		//$p["method"] = $api_name;
 		$p["format"] = $format;
 		
 		$sign = $this->sign($p,$api_name);
 		
-		$url = YJK_API_HOST."?".http_build_query($p)."&sign=".$sign;
+		$url = YJK_API_HOST.$api_name."?".http_build_query($p)."&sign=".$sign;
 		$data = json_decode( $this->getData($url));
 		
 		return $data;
